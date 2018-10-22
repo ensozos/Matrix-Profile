@@ -3,6 +3,9 @@ A Java library that allows you to use the Matrix Profile concept as a toolkit
 
 Overview
 -------------------------
+<p align="center">
+   <img src="images/matrix_profile.png" width="700" alt="matrix profile exmple">
+</p>
 
 The Matrix Profile, has the potential to revolutionize time series data mining because 
 of its generality, versatility, simplicity and scalability.  In particular it has implications 
