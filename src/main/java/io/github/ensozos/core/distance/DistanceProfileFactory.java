@@ -1,6 +1,6 @@
-package com.auth.mp.core.distance;
+package io.github.ensozos.core.distance;
 
-import com.auth.mp.core.DistanceProfile;
+import io.github.ensozos.core.DistanceProfile;
 
 public class DistanceProfileFactory {
 

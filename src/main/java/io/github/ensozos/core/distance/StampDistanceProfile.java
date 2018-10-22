@@ -1,7 +1,7 @@
-package com.auth.mp.core.distance;
+package io.github.ensozos.core.distance;
 
-import com.auth.mp.core.DistanceProfile;
-import com.auth.mp.core.Mass;
+import io.github.ensozos.core.DistanceProfile;
+import io.github.ensozos.core.Mass;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.NDArrayIndex;

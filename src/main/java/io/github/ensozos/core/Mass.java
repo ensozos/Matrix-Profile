@@ -1,6 +1,6 @@
-package com.auth.mp.core;
+package io.github.ensozos.core;
 
-import com.auth.mp.utils.CustomOperations;
+import io.github.ensozos.utils.CustomOperations;
 import org.jtransforms.fft.DoubleFFT_1D;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;

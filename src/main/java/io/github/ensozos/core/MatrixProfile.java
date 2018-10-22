@@ -1,18 +1,16 @@
-package com.auth.mp.core;
+package io.github.ensozos.core;
 
 
-import com.auth.mp.utils.CustomOperations;
-import com.auth.mp.core.distance.DistanceProfileFactory;
-import com.auth.mp.core.order.LinearOrder;
-import com.auth.mp.core.order.Order;
-import com.auth.mp.core.order.RandomOrder;
+import io.github.ensozos.utils.CustomOperations;
+import io.github.ensozos.core.distance.DistanceProfileFactory;
+import io.github.ensozos.core.order.LinearOrder;
+import io.github.ensozos.core.order.Order;
+import io.github.ensozos.core.order.RandomOrder;
 import javafx.util.Pair;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
-
-import static com.auth.mp.core.distance.DistanceProfileFactory.STAMP;
 
 
 public class MatrixProfile {
@@ -40,7 +38,7 @@ public class MatrixProfile {
      * @return a Pair with profile matrix as key and profile index as value.
      */
     public Pair<INDArray, INDArray> stmp(INDArray target, INDArray query, int window) {
-        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(STAMP);
+        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
         int target_shape = (int) target.shape()[1];
         int query_shape = (int) query.shape()[1];
@@ -64,7 +62,7 @@ public class MatrixProfile {
      * @return a Pair with profile matrix as key and profile index as value.
      */
     public Pair<INDArray, INDArray> stmp(INDArray target, int window) {
-        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(STAMP);
+        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
         if (target.shape()[1] == window)
             throw new IllegalArgumentException();
@@ -85,7 +83,7 @@ public class MatrixProfile {
      * @return a Pair with profile matrix as key and profile index as value.
      */
     public Pair<INDArray, INDArray> stamp(INDArray target, INDArray query, int window) {
-        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(STAMP);
+        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
         int target_shape = (int) target.shape()[1];
         int query_shape = (int) query.shape()[1];
@@ -109,7 +107,7 @@ public class MatrixProfile {
      * @return a Pair with profile matrix as key and profile index as value.
      */
     public Pair<INDArray, INDArray> stamp(INDArray target, int window) {
-        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(STAMP);
+        DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
         if (target.shape()[1] == window)
             throw new IllegalArgumentException();

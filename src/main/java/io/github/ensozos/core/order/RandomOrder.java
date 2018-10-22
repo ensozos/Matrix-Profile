@@ -1,4 +1,4 @@
-package com.auth.mp.core.order;
+package io.github.ensozos.core.order;
 
 
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.auth.mp.core;
+package io.github.ensozos.core;
 
 import org.nd4j.linalg.api.ndarray.INDArray;
 

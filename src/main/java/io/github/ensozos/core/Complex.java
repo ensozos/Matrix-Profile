@@ -1,4 +1,4 @@
-package com.auth.mp.core;
+package io.github.ensozos.core;
 
 import java.lang.Math;
 

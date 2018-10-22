@@ -1,4 +1,4 @@
-package com.auth.mp.core.order;
+package io.github.ensozos.core.order;
 
 
 public class LinearOrder implements Order {

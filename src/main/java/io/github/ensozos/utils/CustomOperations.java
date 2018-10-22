@@ -1,4 +1,4 @@
-package com.auth.mp.utils;
+package io.github.ensozos.utils;
 
 import com.google.common.base.Function;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -8,8 +8,7 @@ import org.nd4j.linalg.indexing.INDArrayIndex;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.nd4j.linalg.indexing.conditions.Condition;
 import org.nd4j.linalg.indexing.conditions.Conditions;
-import org.nd4j.linalg.ops.transforms.Transforms;
-import org.nd4j.linalg.util.ArrayUtil;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
