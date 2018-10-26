@@ -37,11 +37,25 @@ Usage
     * MASS v2.0
     * Fast moving SD
     * Fast moving average
-    
+        
+Note: We are using ND4j as time series representation. You can find more information about ND4j [here](https://deeplearning4j.org/docs/latest/nd4j-overview)  
 
 Installation
 -------------------------
-in progress
+You can pull Matrix Profile library from the central maven repository, just add to **pom.xml** file:
+```xml
+<dependency>
+   <groupId>io.github.ensozos</groupId>
+   <artifactId>matrix-profile</artifactId>
+   <version>0.0.1</version>
+</dependency>
+```
+
+For gradle users add this to **build.gradle**:
+
+```xml
+compile 'io.github.ensozos:matrix-profile:0.0.1'
+```
 
 Example
 --------------------------
