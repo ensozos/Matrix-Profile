@@ -1,5 +1,8 @@
 # Profile Matrix Library
-A Java library that allows you to use the Matrix Profile concept as a toolkit
+A Java library for Matrix Profile
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ensozos/matrix-profile/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.ensozos/matrix-profile)
+
 
 Overview
 -------------------------
