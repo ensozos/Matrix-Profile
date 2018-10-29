@@ -1,4 +1,4 @@
-# Profile Matrix Library
+# Matrix Profile Library
 A Java library for Matrix Profile
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.ensozos/matrix-profile/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.ensozos/matrix-profile)
