@@ -9,7 +9,7 @@ public class DistanceProfileFactory {
     /**
      * Factory method for creating distance profile objects
      *
-     * @param distanceProfileType
+     * @param distanceProfileType the type of distance profile
      * @return distance profile object
      */
     public DistanceProfile getDistanceProfile(String distanceProfileType) {

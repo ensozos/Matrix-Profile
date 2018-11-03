@@ -30,8 +30,20 @@ The advantages of using the Matrix Profile (over hashing, indexing, brute forcin
 
 For more information about matrix profile check out [The UCR Matrix Profile Page](http://www.cs.ucr.edu/~eamonn/MatrixProfile.html)
 
+In version 0.0.2 we implemented MPdist measure. The useful properties of the MPdist include:
+- Ability to compare time series of different lengths
+- Being robust to spikes, dropouts,wandering baseline adn missing values, and other issues that are common 
+outside of benchmark dataset
+- The invariances to amplitude and offset offered by DTW adn Euclidean distance as well as additional invariances, 
+including phase invariance, order invariance liner trend invariance and stutter invariance
+- Allowing scalability
+
+We followed the fast MPdist algorithm that can be found in section
+Speeding up MPdist Search on official paper.
+
 Usage
 -------------------------
+- MPdist (query by content)
 - STMP (two time series)
 - STMP (self join)
 - STAMP (with two time series)
@@ -50,14 +62,14 @@ You can pull Matrix Profile library from the central maven repository, just add 
 <dependency>
    <groupId>io.github.ensozos</groupId>
    <artifactId>matrix-profile</artifactId>
-   <version>0.0.1</version>
+   <version>0.0.2</version>
 </dependency>
 ```
 
 For gradle users add this to **build.gradle**:
 
 ```xml
-compile 'io.github.ensozos:matrix-profile:0.0.1'
+compile 'io.github.ensozos:matrix-profile:0.0.2'
 ```
 
 Example
@@ -87,5 +99,4 @@ Paper Citation
 
 - Abdullah Mueen, Yan Zhu, Michael Yeh, Kaveh Kamgar, Krishnamurthy Viswanathan, Chetan Kumar Gupta and Eamonn Keogh (2015), The Fastest Similarity Search Algorithm for Time Series Subsequences under Euclidean Distance
 
-
-
+- Matrix Proﬁle XII: MPdist: A Novel Time Series Distance Measure to Allow Data Mining in More Challenging Scenarios. Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall, Amirali Darvishzadeh, Eamonn Keogh. ICDM 2018.

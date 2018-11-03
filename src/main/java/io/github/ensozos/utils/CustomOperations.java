@@ -56,6 +56,26 @@ public class CustomOperations {
         return append(arr, Nd4j.create(pad, new int[]{1, length}));
     }
 
+    public static INDArray centeredMovingMinimum(INDArray arr, int k) {
+        INDArray resutl = Nd4j.zeros(1, arr.length());
+        int arrSize = (int) arr.length();
+
+        int interval = k / 2;
+        double minVal;
+        if (k % 2 != 0) {
+            for (int i = 0; i < arr.length(); i++) {
+                minVal = arr.get(NDArrayIndex.interval(Math.max(0, i - interval), Math.min(i + interval, arrSize), true)).minNumber().doubleValue();
+                resutl.put(0, i, minVal);
+            }
+        } else {
+            for (int i = 0; i < arr.length(); i++) {
+                minVal = arr.get(NDArrayIndex.interval(Math.max(0, (i - 1) - (interval - 1)), Math.min((i - 1) + interval, arrSize), true)).minNumber().doubleValue();
+                resutl.put(0, i, minVal);
+            }
+        }
+
+        return resutl;
+    }
 
     public static INDArray lessThan(INDArray arr1, INDArray arr2) {
         if (arr1.length() != arr2.length()) throw new IllegalArgumentException();

@@ -24,9 +24,9 @@ public class Mass {
      *
      *  www.cs.unm.edu/~mueen/FastestSimilaritySearch.html
      *
-     * @param ts
-     * @param query
-     * @return
+     * @param ts time series
+     * @param query time series
+     * @return INDArray with MASS result
      */
     public INDArray mass(INDArray ts, INDArray query) {
         query = zNormalize(query);
@@ -37,7 +37,10 @@ public class Mass {
         INDArray stdv = movStd(ts, m);
 
         //padding query (note nd4j pad method is only for two dimension)
-        query = CustomOperations.singlePad(Nd4j.reverse(query), n - m);
+
+        query = Nd4j.reverse(query);
+        if(n - m > 0)
+            query = CustomOperations.singlePad(query, n - m);
 
         Complex[] complexTs = new Complex[n];
         Complex[] complexQuery = new Complex[n];
@@ -66,7 +69,6 @@ public class Mass {
         }
 
         INDArray dot = Nd4j.create(realDot, new int[]{1, realDot.length});
-
 
         return sqrt(dot.get(NDArrayIndex.interval(m - 1, dot.length())).div(stdv).neg().add(m).mul(2));
     }

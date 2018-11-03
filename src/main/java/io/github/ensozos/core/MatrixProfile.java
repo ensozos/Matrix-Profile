@@ -18,8 +18,8 @@ public class MatrixProfile {
     private DistanceProfileFactory distanceProfileFactory;
 
     /**
-     *  Class for matrix profile computation based on Yeh, Chin-Chia Michael & Zhu, Yan & Ulanova, Liudmila & Begum, Nurjahan & Ding, Yifei & Dau, Anh & Silva, Diego & Mueen,
-     *  Abdullah & Keogh, Eamonn. (2016). Matrix Profile I: All Pairs Similarity Joins for Time Series: A Unifying View That Includes Motifs,
+     *  Class for matrix profile computation based on Yeh, Chin-Chia Michael Zhu, Yan Ulanova, Liudmila Begum, Nurjahan Ding, Yifei  Dau, Anh  Silva, Diego  Mueen,
+     *  Abdullah  Keogh, Eamonn. (2016). Matrix Profile I: All Pairs Similarity Joins for Time Series: A Unifying View That Includes Motifs,
      *  Discords and Shapelets. 1317-1322. 10.1109/ICDM.2016.0179.
      *
      */

@@ -8,7 +8,7 @@ public class LinearOrder implements Order {
     /**
      * Indices of lenght w in linear order
      *
-     * @param w
+     * @param w window size
      */
     public LinearOrder(int w) {
         this.w = w;
