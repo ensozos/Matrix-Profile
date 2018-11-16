@@ -148,7 +148,10 @@ public class MatrixProfile {
 
             //update indices
             uptIndices = CustomOperations.lessThan(distanceProfile, matrixProfile);
-            matrixProfileIndex.put(uptIndices, distanceProfileIndex.get(uptIndices));
+
+            // if the indices array are zero length keep the old matrixProfileIndex
+            if (uptIndices.shape()[1] > 0)
+                matrixProfileIndex.put(uptIndices, distanceProfileIndex.get(uptIndices));
 
             //element wise minimum
             matrixProfile = CustomOperations.elementWiseMin(matrixProfile, distanceProfile);

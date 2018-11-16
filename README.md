@@ -62,14 +62,14 @@ You can pull Matrix Profile library from the central maven repository, just add 
 <dependency>
    <groupId>io.github.ensozos</groupId>
    <artifactId>matrix-profile</artifactId>
-   <version>0.0.2</version>
+   <version>0.0.3</version>
 </dependency>
 ```
 
 For gradle users add this to **build.gradle**:
 
 ```xml
-compile 'io.github.ensozos:matrix-profile:0.0.2'
+compile 'io.github.ensozos:matrix-profile:0.0.3'
 ```
 
 Example
@@ -86,6 +86,17 @@ The user needs to create a MatrixProfile profile object and pass the time series
   matrixProfile.stamp(target, query, w)
 ```
 
+For Matrix Profile distance you need to create MPdistance object:
+
+```Java
+  MPdistance mpDist = new MPdistance();
+  
+  int window = ...;
+  INDArray target = Nd4j.create(...);
+  INDArray query = Nd4j.create(...);
+
+  mpDist.getMPdistance(target, query, w)
+```
 
 License
 --------------------------

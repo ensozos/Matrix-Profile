@@ -98,6 +98,7 @@ public class CustomOperations {
             arrIndices[1][i] = indices.get(i);
         }
 
+
         return Nd4j.create(arrIndices);
     }
 
