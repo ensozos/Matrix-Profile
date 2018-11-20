@@ -6,7 +6,7 @@ public class LinearOrder implements Order {
     private int index;
 
     /**
-     * Indices of lenght w in linear order
+     * Indices of length w in linear order
      *
      * @param w window size
      */
