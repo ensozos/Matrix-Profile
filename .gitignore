@@ -40,5 +40,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 ### Intellij
-.idea/
 *.iml
+/.idea/
