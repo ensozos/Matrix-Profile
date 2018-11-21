@@ -11,8 +11,8 @@ public class MPdistance {
     private Mass massAlgo;
 
     /**
-     * Matrix Profile distance instroduced by Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall
-     * ,Amirali Darvishzadeh, Eamonn Keogh at "An Ultra-Fast Time Series Distance Measure to
+     * Matrix Profile distance introduced by Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall,
+     * Amirali Darvishzadeh, Eamonn Keogh at "An Ultra-Fast Time Series Distance Measure to
      * allow Data Mining in more Complex Real-World Deployments"
      */
     public MPdistance() {
@@ -21,8 +21,8 @@ public class MPdistance {
     }
 
     /**
-     * Matrix Profile distance instroduced by Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall
-     * ,Amirali Darvishzadeh, Eamonn Keogh at "An Ultra-Fast Time Series Distance Measure to
+     * Matrix Profile distance introduced by Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall,
+     * Amirali Darvishzadeh, Eamonn Keogh at "An Ultra-Fast Time Series Distance Measure to
      * allow Data Mining in more Complex Real-World Deployments"
      */
     public MPdistance(int threshold) {

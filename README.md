@@ -31,15 +31,15 @@ The advantages of using the Matrix Profile (over hashing, indexing, brute forcin
 For more information about matrix profile check out [The UCR Matrix Profile Page](http://www.cs.ucr.edu/~eamonn/MatrixProfile.html)
 
 In version 0.0.2 we implemented MPdist measure. The useful properties of the MPdist include:
-- Ability to compare time series of different lengths
-- Being robust to spikes, dropouts,wandering baseline adn missing values, and other issues that are common 
-outside of benchmark dataset
-- The invariances to amplitude and offset offered by DTW adn Euclidean distance as well as additional invariances, 
-including phase invariance, order invariance liner trend invariance and stutter invariance
-- Allowing scalability
+- Ability to compare time series of different lengths.
+- Robust to spikes, dropouts, wandering baseline, missing values, and other issues that are common 
+outside of benchmark dataset.
+- Invariance to amplitude and offset offered by DTW and Euclidean distance as well as additional invariances, 
+including phase invariance, order invariance, liner trend invariance, and stutter invariance.
+- Allows scalability
 
 We followed the fast MPdist algorithm that can be found in section
-Speeding up MPdist Search on official paper.
+"Speeding up MPdist Search" in the official paper.
 
 Usage
 -------------------------
@@ -80,10 +80,10 @@ The user needs to create a MatrixProfile profile object and pass the time series
   MatrixProfile matrixProfile = new MatrixProfile();
   
   int window = 4;
-  INDArray target = Nd4j.create(new double[]{0.0, 6.0, -1.0, 2.0, 3.0,1.0,4.0}, new int[]{1, 7});
+  INDArray target = Nd4j.create(new double[]{0.0, 6.0, -1.0, 2.0, 3.0, 1.0, 4.0}, new int[]{1, 7});
   INDArray query = Nd4j.create(new double[]{1.0, 2.0, 0.0, 0.0, -1}, new int[]{1, 5});
 
-  matrixProfile.stamp(target, query, w)
+  matrixProfile.stamp(target, query, window);
 ```
 
 For Matrix Profile distance you need to create MPdistance object:
@@ -95,7 +95,7 @@ For Matrix Profile distance you need to create MPdistance object:
   INDArray target = Nd4j.create(...);
   INDArray query = Nd4j.create(...);
 
-  mpDist.getMPdistance(target, query, w)
+  mpDist.getMPdistance(target, query, window);
 ```
 
 License

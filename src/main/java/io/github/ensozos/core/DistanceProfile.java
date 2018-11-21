@@ -8,7 +8,7 @@ public interface DistanceProfile {
      *  Returns the distance profile given two time series index and window
      *
      * @param tsA time series
-     * @param tsB time seires
+     * @param tsB time series
      * @param index current index
      * @param window window size
      * @return distance profile

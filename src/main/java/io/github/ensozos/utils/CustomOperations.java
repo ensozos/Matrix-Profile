@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Code from AlexDBlack
  * <p>
- * These are some functions which I couldn't find the the ND4J library so I implemented them myself.
+ * These are some functions which I couldn't find in the ND4J library, so I implemented them myself.
  * You can see the usages in the file NumpyCheatSheat.java
  * <p>
  * Following is the link to the cheatsheat I've implemented

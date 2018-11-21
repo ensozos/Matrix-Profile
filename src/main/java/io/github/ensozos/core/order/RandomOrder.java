@@ -15,13 +15,22 @@ public class RandomOrder implements Order {
      * @param w size w
      */
     public RandomOrder(int w) {
+        this(w, new Random());
+    }
+
+    /**
+     * Random indices of length w
+     *
+     * @param w size w
+     * @param rnd the random number generate to use. Call this from unit tests for deterministic results
+     */
+    public RandomOrder(int w, Random rnd) {
         this.w = w;
         this.index = -1;
         this.indices = new int[w];
 
         IntStream.range(0, w).forEach(n -> this.indices[n] = n);
-        shuffle(indices);
-
+        shuffle(indices, rnd);
     }
 
     /**
@@ -42,19 +51,18 @@ public class RandomOrder implements Order {
      * Shuffle array with Fisher-Yates algorithm
      *
      * @param array array to shuffle
+     * @param rnd random number generator to use
      */
-    private void shuffle(int[] array) {
+    private void shuffle(int[] array, Random rnd) {
         int n = array.length;
-        Random random = new Random();
 
         for (int i = 0; i < array.length; i++) {
-            int randomValue = i + random.nextInt(n - i);
+            int randomValue = i + rnd.nextInt(n - i);
 
             int randomElement = array[randomValue];
             array[randomValue] = array[i];
             array[i] = randomElement;
         }
     }
-
 
 }

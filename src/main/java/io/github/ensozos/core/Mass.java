@@ -6,9 +6,9 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.NDArrayIndex;
 
-
 import static org.nd4j.linalg.ops.transforms.Transforms.pow;
 import static org.nd4j.linalg.ops.transforms.Transforms.sqrt;
+
 
 public class Mass {
 
@@ -16,9 +16,9 @@ public class Mass {
     }
 
     /**
-     *  Mueen's algorithm for similarity search (MASS 2.0). Mass uses convolution based method
-     *  to calculate dot products in O(n logn).In addition MASS 2.0 use half convolution to compute only
-     *  the necessary half. Fast fourier tranformation is used as subroutine. The main computation is
+     *  Mueen's algorithm for similarity search (MASS 2.0). Mass uses a convolution based method
+     *  to calculate sliding dot products in O(n logn). In addition MASS 2.0 use half convolution to compute only
+     *  the necessary half. Fast fourier transformation is used as subroutine. The main computation is
      *
      *          dots = ifft( fft(ts) * fft(query))
      *
@@ -60,7 +60,7 @@ public class Mass {
             complexDot[i] = complexTs[i].times(complexQuery[i]);
         }
 
-        //inverse fft for dot computation
+        // inverse fft for dot computation
         complexDot = ifft1D(complexDot);
         double[] realDot = new double[complexDot.length];
 
@@ -95,7 +95,7 @@ public class Mass {
      * just in time z-normalization. In one pass calculate cumulative sums of ts
      * and ts^2 and store. Subtract two cumulative sums to obtain the sum over any
      * window. Use the sums to calculate standard deviations of all windows in
-     * linear time. Calculateed in one linear scan.
+     * linear time. Calculated in one linear scan.
      *
      * @param ts the time series to calculate standard deviation
      * @param w  window
@@ -115,7 +115,7 @@ public class Mass {
     }
 
     /**
-     *  wrapper method for jtransforms fast fourier transform.
+     *  wrapper method for JTransform's fast fourier transform.
      *
      * @param signal
      * @return Complex array of fft
@@ -142,7 +142,7 @@ public class Mass {
     }
 
     /**
-     *  wrapper method for jtranfroms inverse fast fourier
+     *  wrapper method for JTransform's inverse fast fourier
      *  transform.
      *
      * @param fourier
