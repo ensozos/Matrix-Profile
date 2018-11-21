@@ -24,6 +24,7 @@ public class MPdistance {
      * Matrix Profile distance introduced by Shaghayegh Gharghabi, Shima Imani, Anthony Bagnall,
      * Amirali Darvishzadeh, Eamonn Keogh at "An Ultra-Fast Time Series Distance Measure to
      * allow Data Mining in more Complex Real-World Deployments"
+     * @param threshold some small fraction of the data length (like 0.05 for example)
      */
     public MPdistance(int threshold) {
         this.threshold = threshold;
@@ -32,7 +33,7 @@ public class MPdistance {
 
     /**
      * Calculates MP distance given two time series and a subsequence length. In case
-     * of different size of time series it work as query by content. This method is based
+     * of different size of time series it works as query by content. This method is based
      * on Speeding up MPdist Search section of the paper.
      * <p>
      * Note: current version is not fully optimized (see centeredMovingMinimum).
@@ -78,8 +79,7 @@ public class MPdistance {
     }
 
     /**
-     * Basic algorithm that finds MP distance given the matrix
-     * profile.
+     * Basic algorithm that finds MP distance given the matrix profile.
      *
      * @param matrixProfile matrix profile of two time series
      * @param dataLength    length of the data
