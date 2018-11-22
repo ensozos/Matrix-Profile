@@ -63,8 +63,9 @@ public class MatrixProfile {
     public Pair<INDArray, INDArray> stmp(INDArray target, int window) {
         DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
-        if (target.shape()[1] == window)
-            throw new IllegalArgumentException();
+        if (target.shape()[1] <= window)
+            throw new IllegalArgumentException("The length of the target (" +
+                    target.shape()[1] + ") must be > the window width (" + window + ")");
 
         return matrixProfile(target, window, new LinearOrder((int) (target.length() - window + 1)), stamp, target, true);
     }
