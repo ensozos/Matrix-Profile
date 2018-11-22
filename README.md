@@ -100,7 +100,7 @@ For Matrix Profile distance you need to create MPdistance object:
 
 License
 --------------------------
-Distributed under the MIT license. See the LICENSE file for more information.
+Distributed under the MIT license. See LICENSE for more information.
 
 
 Paper Citation
