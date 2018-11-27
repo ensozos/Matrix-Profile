@@ -20,8 +20,9 @@ import java.util.List;
  * These are some functions which I couldn't find in the ND4J library, so I implemented them myself.
  * You can see the usages in the file NumpyCheatSheat.java
  * <p>
- * Following is the link to the cheatsheat I've implemented
- * https://www.dataquest.io/blog/images/cheat-sheets/numpy-cheat-sheet.pdf
+ * Refer to
+ * https://github.com/deeplearning4j/dl4j-examples/tree/master/nd4j-examples/
+ * src/main/java/org/nd4j/examples/numpy_cheatsheat
  *
  * @author Shams Ul Azeem
  */
