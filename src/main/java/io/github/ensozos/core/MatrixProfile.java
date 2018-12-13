@@ -143,7 +143,6 @@ public class MatrixProfile {
 
         MatrixProfileCalculator calculator =
                 new MatrixProfileCalculator(timeSeriesA, window, order, dp, timeSeriesB, trivialMatch);
-        System.out.println("isConcurrent = " + isConcurrent);
         return isConcurrent ? calculator.calculateConcurrently() : calculator.calculateSerially();
     }
 
