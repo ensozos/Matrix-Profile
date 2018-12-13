@@ -16,7 +16,7 @@ public class FileUtil {
     public static final String DATA_DIR = "data/series/";
     public static final String RESULTS_DIR = "results/";
 
-    static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
 
     /**
@@ -92,5 +92,4 @@ public class FileUtil {
         }
         return array;
     }
-
 }
