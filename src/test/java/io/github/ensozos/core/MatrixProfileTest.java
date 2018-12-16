@@ -11,13 +11,13 @@ import static java.lang.Double.POSITIVE_INFINITY;
 public class MatrixProfileTest {
 
     /* instance under test */
-    private MatrixProfile matrixProfile = new MatrixProfile();
+    private MatrixProfile matrixProfile = new MatrixProfile(true);
 
-    INDArray shortTargetSeries = Nd4j.create(
+    private INDArray shortTargetSeries = Nd4j.create(
         new double[]{0.0, 6.0, -1.0, 2.0, 3.0, 1.0, 4.0},
         new int[]{1, 7}
     );
-    INDArray targetSeriesWithPattern = Nd4j.create(
+    private INDArray targetSeriesWithPattern = Nd4j.create(
         new double[]{0.6, 0.5, 2.00,  1.0,  -1.01, -0.5, 1.0,  2.3,  4.0,  5.9, 4.2, 3.1, 3.2,
                 3.4,  2.9, 3.5,  1.05, -1.0, -0.50, 1.01, 2.41, 3.99, 6.01, 4.7, 3.2, 2.6, 4.1, 4.3, 1.1, 1.7, 3.1, 1.9,
                 -0.5, 2.1, 1.9, 2.01, -0.02, 0.48, 2.03, 3.31, 5.1,  7.1,  5.1, 3.2, 2.3, 1.8, 2.1, 1.7, 1.1, -0.1, 2.1,
@@ -26,9 +26,9 @@ public class MatrixProfileTest {
         new int[]{1, 69}
     );
 
-    INDArray query = Nd4j.create(new double[]{1.0, 2.0, 0.0, 0.0, -1}, new int[]{1, 5});
+    private INDArray query = Nd4j.create(new double[]{1.0, 2.0, 0.0, 0.0, -1}, new int[]{1, 5});
 
-    Pair<INDArray, INDArray>expectedResultWhenQuery = new Pair<>(
+    private Pair<INDArray, INDArray>expectedResultWhenQuery = new Pair<>(
             Nd4j.create(new double[]{1.3881,    1.7967,    3.0370,    2.6308}, new int[]{1, 4}),
             Nd4j.create(new double[]{0,    1.0000,         0,         0}, new int[]{1, 4})
     );
@@ -95,25 +95,8 @@ public class MatrixProfileTest {
 
         Pair<INDArray, INDArray> pair = matrixProfile.stmp(targetSeriesWithPattern, window);
         // Uncomment this to export results to excel. Plotting in excel can be very instructive.
-        //printToCsv(targetSeriesWithPattern, expectedResultWhenSelfJoin);
+        //CsvExport.printAsCsv(targetSeriesWithPattern, expectedResultWhenSelfJoin);
         assertEquals(expectedResultWhenSelfJoin.toString(), pair.toString());
-    }
-
-    /**
-     * Print the series and profile to a CSV file so that it can be visualized.
-     * @param target the seried that was processed
-     * @param expResult expected matrix profile and indices
-     */
-    private void printToCsv(INDArray target, Pair<INDArray, INDArray> expResult) {
-        System.out.println("row,series,MP,MPindx");  // csv header row
-        for (int i = 0; i < target.columns(); i++) {
-            System.out.print(i + "," + target.getDouble(0, i) + ",");
-            if (i < expResult.getKey().columns()) {
-                System.out.println(expResult.getKey().getDouble(0, i) + "," + expResult.getValue().getDouble(0,i));
-            } else {
-                System.out.println(",");
-            }
-        }
     }
 
     @Test
