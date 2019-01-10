@@ -100,6 +100,7 @@ For Matrix Profile distance you need to create MPdistance object:
 
 ## Other projects with Matrix Profile
 
+  - R: <https://github.com/franzbischoff/tsmp>
   - Python: <https://github.com/ZiyaoWei/pyMatrixProfile>
   - Python: <https://github.com/jbeleno/owlpy>
   - Python: <https://github.com/javidlakha/matrix-profile>
