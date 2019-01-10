@@ -98,6 +98,13 @@ For Matrix Profile distance you need to create MPdistance object:
   mpDist.getMPdistance(target, query, window);
 ```
 
+## Other projects with Matrix Profile
+
+  - Python: <https://github.com/ZiyaoWei/pyMatrixProfile>
+  - Python: <https://github.com/jbeleno/owlpy>
+  - Python: <https://github.com/javidlakha/matrix-profile>
+  - CUDA: <https://github.com/zpzim/SCAMP>
+
 License
 --------------------------
 Distributed under the MIT license. See LICENSE for more information.
