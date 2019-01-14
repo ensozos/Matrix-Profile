@@ -38,19 +38,25 @@ public class CsvExport {
      */
     public static void printPairToFile(Pair<INDArray, INDArray> result, String filename) {
 
-        try{
+        try {
             URL url = FileUtil.class.getClassLoader().getResource(filename);
+            PrintStream stream;
             if (url == null) {
-                throw new IllegalStateException("Could not find or access " + filename);
+                try {
+                    File file = new File(filename);
+                    stream = new PrintStream(file);
+                }
+                catch (IOException e) {
+                    throw new IllegalStateException("Could not create " + filename);
+                }
+            } else  {
+                stream  = new PrintStream(new File(url.getFile()));
             }
-            System.out.println("writing to " + url.getFile());
-            PrintStream strm = new PrintStream(new File(url.getFile()));
-            // PrintStream strm = new PrintStream(new File(filename));
+            System.out.println("writing to " + filename);
 
-            printSeries(strm, result.getKey());
-            printSeries(strm, result.getValue());
-            strm.close();
-
+            printSeries(stream, result.getKey());
+            printSeries(stream, result.getValue());
+            stream.close();
         }
         catch (FileNotFoundException e) {
             throw new IllegalStateException("File, " + filename + " not found.", e);

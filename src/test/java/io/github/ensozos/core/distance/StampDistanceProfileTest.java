@@ -23,7 +23,7 @@ public class StampDistanceProfileTest {
     public void testGetDistanceProfile() {
 
         assertNotNull(profile.getDistanceProfile(
-                        new NDArray(5, 5, 'R'),
-                        new NDArray(5, 5, 'R'), 1, 2));
+                        new NDArray(5, 5, 'c'),
+                        new NDArray(5, 5, 'c'), 1, 2));
     }
 }

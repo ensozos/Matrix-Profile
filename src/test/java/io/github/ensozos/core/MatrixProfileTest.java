@@ -48,7 +48,7 @@ public class MatrixProfileTest {
     @Test
     public void testMatrixProfileStampWindow4() {
         int window = 4;
-        Pair<INDArray, INDArray> pair = matrixProfile.stamp(shortTargetSeries, query, window);
+        Pair<INDArray, INDArray> pair = matrixProfile.stamp(shortTargetSeries, query, window, 1.0);
         assertEquals(expectedResultWhenQuery.toString(), pair.toString());
     }
 
