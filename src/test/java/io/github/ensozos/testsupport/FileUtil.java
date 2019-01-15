@@ -13,8 +13,9 @@ import java.net.URL;
  */
 public class FileUtil {
 
-    public static final String DATA_DIR = "data/series/";
-    public static final String RESULTS_DIR = "results/";
+    public static final String RESOURCE_DIR = "src/test/resources/";
+    public static final String DATA_DIR = RESOURCE_DIR + "data/series/";
+    public static final String RESULTS_DIR = RESOURCE_DIR + "results/";
 
     private static final String DELIMITER = ",";
 
@@ -76,11 +77,12 @@ public class FileUtil {
     }
 
     private static BufferedReader getReader(String filepath) throws FileNotFoundException {
-        URL url = FileUtil.class.getClassLoader().getResource(filepath);
-        if (url == null) {
-            throw new IllegalStateException("Could not find or access " + filepath);
-        }
-        return new BufferedReader(new FileReader(new File(url.getFile())));
+
+        File file;
+        file = new File(filepath);
+        //System.out.println("reading from " + file.getAbsolutePath());
+
+        return new BufferedReader(new FileReader(file));
     }
 
     private static double[] parseLineOfDoubles(String line) {

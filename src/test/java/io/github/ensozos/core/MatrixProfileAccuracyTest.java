@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 
 /**
- * Test that we can trad off accuracy for performance
+ * Test that we can trade off accuracy for performance
  */
 public class MatrixProfileAccuracyTest {
 
@@ -23,17 +23,16 @@ public class MatrixProfileAccuracyTest {
     private static final boolean UPDATE_RESULTS = false;
 
 
-
     @Test
-    public void testMatrixProfileSelfJoinStmpWindow8() {
+    public void testMatrixProfileSelfJoinStampWindow8() {
         verifyResult("repeat_4",
                 "repeat_4_profile_pair_0_1.exp",
-                8, 0.1,false);
+                8, 0.1, false);
     }
 
     // Originally ran in 3m 40s on 4 core laptop before making it multi-threaded. - only 21s when 10% of steps used
     @Test
-    public void testMatrixProfileSelfJoinStmp_ArtDailyFlatMiddle() {
+    public void testMatrixProfileSelfJoinStamp_ArtDailyFlatMiddle() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair_0_1.exp",
                 80, 0.1, false);
@@ -41,7 +40,7 @@ public class MatrixProfileAccuracyTest {
 
     // Originally ran in 2m 40s on 4 core laptop before making it multi-threaded - only 23s when 10% of steps used
     @Test
-    public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown() {
+    public void testMatrixProfileSelfJoinStamp_ArtDailyJumpsDown() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair_0_1.exp",
                 80, 0.1, false);
@@ -50,7 +49,7 @@ public class MatrixProfileAccuracyTest {
 
     // ran in 4s
     @Test
-    public void testMatrixProfileSelfJoinStmpWindow8_concurrent() {
+    public void testMatrixProfileSelfJoinStampWindow8_concurrent() {
         verifyResult("repeat_4",
                 "repeat_4_profile_pair_0_1.exp",
                 8, 0.1,true);
@@ -58,7 +57,7 @@ public class MatrixProfileAccuracyTest {
 
     // Ran in 1m 34s on 4 core laptop after making it multi-threaded, but took 10s using only 10%
     @Test
-    public void testMatrixProfileSelfJoinStmp_ArtDailyFlatMiddle_concurrent() {
+    public void testMatrixProfileSelfJoinStamp_ArtDailyFlatMiddle_concurrent() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair_0_1.exp",
                 80, 0.1, true);
@@ -66,7 +65,7 @@ public class MatrixProfileAccuracyTest {
 
     // Ran in 56s on 4 core laptop after making it multi-threaded, but took only 15 seconds using only 10%;  35s at 20%
     @Test
-    public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown_concurrent() {
+    public void testMatrixProfileSelfJoinStamp_ArtDailyJumpsDown_concurrent() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair_0_1.exp",
                 80, 0.1, true);
