@@ -34,7 +34,7 @@ public class MatrixProfilePerformanceTest {
                 80, false);
     }
 
-    // Ran in 3m 1s on 4 core laptop before making it multi-threaded.
+    // Ran in 2m 40s on 4 core laptop before making it multi-threaded.
     @Test
     public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown() {
         verifyResult("numenta_art_daily_jumps_down",
@@ -43,7 +43,7 @@ public class MatrixProfilePerformanceTest {
     }
 
     /* Commenting some tests to reduce runtime.
-     * Also noticed that some of these tests fail when run from comman line, but not in intellij.
+     * Also noticed that some of these tests fail when run from command line, but not in intellij.
     // Ran in 6m 43s on 4 core laptop before making it multi-threaded.
     @Test
     public void testMatrixProfileSelfJoinStmp_ArtIncreaseSpikeDensity() {
@@ -61,7 +61,6 @@ public class MatrixProfilePerformanceTest {
     }*/
 
 
-
     @Test
     public void testMatrixProfileSelfJoinStmpWindow8_concurrent() {
         verifyResult("repeat_4",
@@ -69,7 +68,7 @@ public class MatrixProfilePerformanceTest {
                 8, true);
     }
 
-    // Ran in 1m 49s on 4 core laptop before making it multi-threaded.
+    // Ran in 1m 34s on 4 core laptop after making it multi-threaded.
     @Test
     public void testMatrixProfileSelfJoinStmp_ArtDailyFlatMiddle_concurrent() {
         verifyResult("numenta_art_daily_flatmiddle",
@@ -77,7 +76,7 @@ public class MatrixProfilePerformanceTest {
                 80, true);
     }
 
-    // Ran in 57s on 4 core laptop before making it multi-threaded.
+    // Ran in 56s on 4 core laptop after making it multi-threaded.
     @Test
     public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown_concurrent() {
         verifyResult("numenta_art_daily_jumps_down",
@@ -112,9 +111,10 @@ public class MatrixProfilePerformanceTest {
 
         Pair<INDArray, INDArray> pair =
                 concurrent ? concurrentMP.stmp(series, window) : serialMP.stmp(series, window);
+
         // Uncomment this to export results to excel. Plotting in excel can be very instructive.
-        //CsvExport.printAsCsv(series, expectedResultWhenSelfJoin);
-        //CsvExport.printPairToFile(pair, "temp.exp");
+        //CsvExport.printToCsvFile(series, expectedResultWhenSelfJoin, "perf_" + seriesFile + ".xls");
+        //CsvExport.printPairToFile(pair, "perf_" + seriesFile + ".xls");
 
         if (UPDATE_RESULTS) {
             CsvExport.printPairToFile(pair, RESULTS_DIR + expResultFile);

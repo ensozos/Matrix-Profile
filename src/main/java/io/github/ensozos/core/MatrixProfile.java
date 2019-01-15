@@ -7,6 +7,7 @@ import io.github.ensozos.core.order.Order;
 import io.github.ensozos.core.order.RandomOrder;
 import javafx.util.Pair;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import java.util.Random;
 
 
 /**
@@ -87,21 +88,27 @@ public class MatrixProfile {
      * @param target target time series
      * @param query  query time series
      * @param window size of window
+     * @param accuracy a value in (0, 1]. Allows trading off accuracy for faster performance.
+     *                A value of 1 means that it will be slow but perfectly accurate.
      * @return a Pair with profile matrix as key and profile index as value.
      */
-    public Pair<INDArray, INDArray> stamp(INDArray target, INDArray query, int window) {
+    public Pair<INDArray, INDArray> stamp(INDArray target, INDArray query, int window, double accuracy) {
         DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
         int target_shape = (int) target.shape()[1];
         int query_shape = (int) query.shape()[1];
-        if (target_shape >= query_shape)
-            return matrixProfile(query, window,
-                    new RandomOrder((int) (query.length() - window + 1)), stamp, target, false);
+        // Using a fixed seed makes it deterministic for tests
+        Random rnd = new Random(0);
+
+        if (target_shape >= query_shape) {
+            Order order = new RandomOrder((int) (query.length() - window + 1), accuracy, rnd);
+            return matrixProfile(query, window, order, stamp, target, false);
+        }
 
         INDArray new_target = CustomOperations.singlePad(target, query_shape - target_shape);
 
-        return matrixProfile(query, window,
-                new RandomOrder((int) (new_target.length() - window + 1)), stamp, new_target, false);
+        Order order = new RandomOrder((int) (new_target.length() - window + 1), accuracy, rnd);
+        return matrixProfile(query, window, order, stamp, new_target, false);
     }
 
     /**
@@ -113,16 +120,21 @@ public class MatrixProfile {
      *
      * @param target target time series
      * @param window size of window
+     * @param accuracy a value in (0, 1]. Allows trading off accuracy for faster performance.
+     *                 A value of 1 means that it will be slow but perfectly accurate.
      * @return a Pair with profile matrix as key and profile index as value.
      */
-    public Pair<INDArray, INDArray> stamp(INDArray target, int window) {
+    public Pair<INDArray, INDArray> stamp(INDArray target, int window, double accuracy) {
         DistanceProfile stamp = distanceProfileFactory.getDistanceProfile(DistanceProfileFactory.STAMP);
 
-        if (target.shape()[1] == window)
-            throw new IllegalArgumentException();
+        if (target.shape()[1] <= window)
+            throw new IllegalArgumentException("The length of the target (" +
+                    target.shape()[1] + ") must be > the window width (" + window + ")");
 
-        return matrixProfile(target, window,
-                new RandomOrder((int) (target.length() - window + 1)), stamp, target, true);
+        // Using a fixed seed makes it deterministic for tests
+        Random rnd = new Random(0);
+        Order order = new RandomOrder((int) (target.length() - window + 1), accuracy, rnd);
+        return matrixProfile(target, window, order, stamp, target, true);
     }
 
     /**
