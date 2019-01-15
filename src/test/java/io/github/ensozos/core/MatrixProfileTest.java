@@ -11,7 +11,7 @@ import static java.lang.Double.POSITIVE_INFINITY;
 public class MatrixProfileTest {
 
     /* instance under test */
-    private MatrixProfile matrixProfile = new MatrixProfile(true);
+    private MatrixProfile matrixProfile = new MatrixProfile(false);
 
     private INDArray shortTargetSeries = Nd4j.create(
         new double[]{0.0, 6.0, -1.0, 2.0, 3.0, 1.0, 4.0},
