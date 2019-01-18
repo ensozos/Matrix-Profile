@@ -137,10 +137,10 @@ public class MatrixProfileTest {
         // the length of these arrays is length of the series - window + 1
         Pair<INDArray, INDArray> expectedResultWhenSelfJoin = new Pair<>(
                 Nd4j.create(new double[]{
-                        Double.NaN,         Double.NaN,         Double.NaN,         POSITIVE_INFINITY,    3.1623,         POSITIVE_INFINITY
+                        3.1623,    3.1623,    3.1623,    3.1623,    3.1623,    3.1623
                 }, new int[]{1, 6}),
                 Nd4j.create(new double[]{
-                        2.0000,    3.0000,    4.0000,    5.0000,    1.0000,    5.0000
+                        5.0000,    5.0000,    5.0000,         0,    1.0000,    2.0000
                 }, new int[]{1, 6})
         );
 
