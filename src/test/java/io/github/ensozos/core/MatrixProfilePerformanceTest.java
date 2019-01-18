@@ -15,7 +15,7 @@ public class MatrixProfilePerformanceTest {
     private MatrixProfile concurrentMP = new MatrixProfile(true);
 
     /** Set this to true if you want to automatically update the results files */
-    private static final boolean UPDATE_RESULTS = true;
+    private static final boolean UPDATE_RESULTS = false;
     private static final int STEPS_IN_DAY = 287;
 
 
