@@ -21,6 +21,7 @@ public class MatrixProfileAccuracyTest {
 
     /** Set this to true if you want to automatically update the results files */
     private static final boolean UPDATE_RESULTS = false;
+    private static final int STEPS_IN_DAY = 287;
 
 
     @Test
@@ -35,7 +36,7 @@ public class MatrixProfileAccuracyTest {
     public void testMatrixProfileSelfJoinStamp_ArtDailyFlatMiddle() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair_0_1.exp",
-                80, 0.1, false);
+                STEPS_IN_DAY, 0.1, false);
     }
 
     // Originally ran in 2m 40s on 4 core laptop before making it multi-threaded - only 23s when 10% of steps used
@@ -43,7 +44,7 @@ public class MatrixProfileAccuracyTest {
     public void testMatrixProfileSelfJoinStamp_ArtDailyJumpsDown() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair_0_1.exp",
-                80, 0.1, false);
+                STEPS_IN_DAY, 0.1, false);
     }
 
 
@@ -60,7 +61,7 @@ public class MatrixProfileAccuracyTest {
     public void testMatrixProfileSelfJoinStamp_ArtDailyFlatMiddle_concurrent() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair_0_1.exp",
-                80, 0.1, true);
+                STEPS_IN_DAY, 0.1, true);
     }
 
     // Ran in 56s on 4 core laptop after making it multi-threaded, but took only 15 seconds using only 10%;  35s at 20%
@@ -68,7 +69,7 @@ public class MatrixProfileAccuracyTest {
     public void testMatrixProfileSelfJoinStamp_ArtDailyJumpsDown_concurrent() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair_0_1.exp",
-                80, 0.1, true);
+                STEPS_IN_DAY, 0.1, true);
     }
 
     private void verifyResult(String seriesFile, String expResultFile,
@@ -85,7 +86,7 @@ public class MatrixProfileAccuracyTest {
                 concurrent ? concurrentMP.stamp(series, window, accuracy) : serialMP.stamp(series, window, accuracy);
 
         // Uncomment this to export results to excel. Plotting in excel can be very instructive.
-        //CsvExport.printToCsvFile(series, expectedResultWhenSelfJoin, "acc_" + seriesFile + ".xls");
+        CsvExport.printToCsvFile(series, pair, "acc_" + seriesFile + ".xls");
         //CsvExport.printPairToFile(pair, "acc_" + seriesFile + ".xls");
 
         if (UPDATE_RESULTS) {
