@@ -16,6 +16,7 @@ public class MatrixProfilePerformanceTest {
 
     /** Set this to true if you want to automatically update the results files */
     private static final boolean UPDATE_RESULTS = false;
+    private static final int STEPS_IN_DAY = 287;
 
 
 
@@ -31,7 +32,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtDailyFlatMiddle() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair.exp",
-                80, false);
+                STEPS_IN_DAY, false);
     }
 
     // Ran in 2m 40s on 4 core laptop before making it multi-threaded.
@@ -39,7 +40,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair.exp",
-                80, false);
+                STEPS_IN_DAY, false);
     }
 
     /* Commenting some tests to reduce runtime.
@@ -49,7 +50,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtIncreaseSpikeDensity() {
         verifyResult("numenta_art_increase_spike_density",
                 "numenta_art_increase_spike_density_profile_pair.exp",
-                80, false);
+                STEPS_IN_DAY, false);
     }
 
     // Ran in 3m 1s on 4 core laptop before making it multi-threaded.
@@ -57,7 +58,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtLoadBalancerSpikes() {
         verifyResult("numenta_art_load_balancer_spikes",
                 "numenta_art_load_balancer_spikes_profile_pair.exp",
-                80, false);
+                STEPS_IN_DAY, false);
     }*/
 
 
@@ -73,7 +74,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtDailyFlatMiddle_concurrent() {
         verifyResult("numenta_art_daily_flatmiddle",
                 "numenta_art_daily_flatmiddle_profile_pair.exp",
-                80, true);
+                STEPS_IN_DAY, true);
     }
 
     // Ran in 56s on 4 core laptop after making it multi-threaded.
@@ -81,7 +82,7 @@ public class MatrixProfilePerformanceTest {
     public void testMatrixProfileSelfJoinStmp_ArtDailyJumpsDown_concurrent() {
         verifyResult("numenta_art_daily_jumps_down",
                 "numenta_art_daily_jumps_down_profile_pair.exp",
-                80, true);
+                STEPS_IN_DAY, true);
     }
 
     /**
@@ -113,7 +114,7 @@ public class MatrixProfilePerformanceTest {
                 concurrent ? concurrentMP.stmp(series, window) : serialMP.stmp(series, window);
 
         // Uncomment this to export results to excel. Plotting in excel can be very instructive.
-        //CsvExport.printToCsvFile(series, expectedResultWhenSelfJoin, "perf_" + seriesFile + ".xls");
+        CsvExport.printToCsvFile(series, pair, "perf_" + seriesFile + ".xls");
         //CsvExport.printPairToFile(pair, "perf_" + seriesFile + ".xls");
 
         if (UPDATE_RESULTS) {

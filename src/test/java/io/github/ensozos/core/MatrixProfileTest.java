@@ -17,6 +17,7 @@ public class MatrixProfileTest {
         new double[]{0.0, 6.0, -1.0, 2.0, 3.0, 1.0, 4.0},
         new int[]{1, 7}
     );
+
     private INDArray targetSeriesWithPattern = Nd4j.create(
         new double[]{0.6, 0.5, 2.00,  1.0,  -1.01, -0.5, 1.0,  2.3,  4.0,  5.9, 4.2, 3.1, 3.2,
                 3.4,  2.9, 3.5,  1.05, -1.0, -0.50, 1.01, 2.41, 3.99, 6.01, 4.7, 3.2, 2.6, 4.1, 4.3, 1.1, 1.7, 3.1, 1.9,
@@ -25,6 +26,18 @@ public class MatrixProfileTest {
         },
         new int[]{1, 69}
     );
+
+    private INDArray targetSeriesWithoutPattern = Nd4j.create(
+            new double[]{1.2, 1.5, 1.9, 2.1, 2.0, 1.8, 1.2, 0.2, 2.2, 2.8},
+            new int[]{1, 10}
+    );
+
+    // 10 points all the same value
+    private INDArray targetStraightLine = Nd4j.create(
+            new double[]{1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2},
+            new int[]{1, 10}
+    );
+
 
     private INDArray query = Nd4j.create(new double[]{1.0, 2.0, 0.0, 0.0, -1}, new int[]{1, 5});
 
@@ -98,6 +111,43 @@ public class MatrixProfileTest {
         //CsvExport.printAsCsv(targetSeriesWithPattern, expectedResultWhenSelfJoin);
         assertEquals(expectedResultWhenSelfJoin.toString(), pair.toString());
     }
+
+    @Test
+    public void testMatrixProfileSelfJoinStmpWindow5() {
+        int window = 5;
+
+        // the length of these arrays is length of the series - window + 1
+        Pair<INDArray, INDArray> expectedResultWhenSelfJoin = new Pair<>(
+                Nd4j.create(new double[]{
+                        2.8386,    3.8080,    4.2220,    4.1329,    3.9414,    2.8386
+                }, new int[]{1, 6}),
+                Nd4j.create(new double[]{
+                        5.0000,    5.0000,    5.0000,         0,         0,         0
+                }, new int[]{1, 6})
+        );
+
+        Pair<INDArray, INDArray> pair = matrixProfile.stmp(targetSeriesWithoutPattern, window);
+        assertEquals(expectedResultWhenSelfJoin.toString(), pair.toString());
+    }
+
+    @Test
+    public void testMatrixProfileSelfJoinStmpStraightLine() {
+        int window = 5;
+
+        // the length of these arrays is length of the series - window + 1
+        Pair<INDArray, INDArray> expectedResultWhenSelfJoin = new Pair<>(
+                Nd4j.create(new double[]{
+                        Double.NaN,         Double.NaN,         Double.NaN,         POSITIVE_INFINITY,    3.1623,         POSITIVE_INFINITY
+                }, new int[]{1, 6}),
+                Nd4j.create(new double[]{
+                        2.0000,    3.0000,    4.0000,    5.0000,    1.0000,    5.0000
+                }, new int[]{1, 6})
+        );
+
+        Pair<INDArray, INDArray> pair = matrixProfile.stmp(targetStraightLine, window);
+        assertEquals(expectedResultWhenSelfJoin.toString(), pair.toString());
+    }
+
 
     @Test
     public void testMatrixProfileSelfJoinStmpWindow4() {
