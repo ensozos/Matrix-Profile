@@ -102,6 +102,15 @@ public class MatrixProfilePerformanceTest {
                 80, true);
     }*/
 
+    // The width of 190 is roughly the period of one of the repeating patterns in the data.
+    // This data comes from a electronic vehicle simulation.
+    @Test
+    public void testMatrixProfileSelfJoinStmp_BusSignal_concurrent() {
+        verifyResult("bus_signal",
+                "bus_signal_pair.exp",
+                190, true);
+    }
+
     private void verifyResult(String seriesFile, String expResultFile, int window, boolean concurrent) {
         INDArray series = FileUtil.readIndArray(DATA_DIR + seriesFile);
         System.out.println("The series under test has " + series.length() + " points. Concurrency = " + concurrent);

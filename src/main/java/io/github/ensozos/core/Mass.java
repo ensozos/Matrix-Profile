@@ -5,12 +5,16 @@ import org.jtransforms.fft.DoubleFFT_1D;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.indexing.NDArrayIndex;
-
+import org.nd4j.linalg.indexing.conditions.Conditions;
+import org.nd4j.linalg.indexing.BooleanIndexing;
 import static org.nd4j.linalg.ops.transforms.Transforms.pow;
 import static org.nd4j.linalg.ops.transforms.Transforms.sqrt;
 
 
 public class Mass {
+
+    /** small epsilon value used to avoid dividing by 0 */
+    private static final double EPS = 1e-40;
 
     public Mass() {
     }
@@ -39,7 +43,7 @@ public class Mass {
         //padding query (note nd4j pad method is only for two dimension)
 
         query = Nd4j.reverse(query);
-        if(n - m > 0)
+        if (n - m > 0)
             query = CustomOperations.singlePad(query, n - m);
 
         Complex[] complexTs = new Complex[n];
@@ -69,8 +73,10 @@ public class Mass {
         }
 
         INDArray dot = Nd4j.create(realDot, new int[]{1, realDot.length});
-
-        return sqrt(dot.get(NDArrayIndex.interval(m - 1, dot.length())).div(stdv).neg().add(m).mul(2));
+        INDArray divRes = dot.get(NDArrayIndex.interval(m - 1, dot.length())).div(stdv);
+        INDArray res = divRes.neg().add(m).mul(2);
+        BooleanIndexing.replaceWhere(res, EPS, Conditions.lessThanOrEqual(EPS));
+        return sqrt(res);
     }
 
 
@@ -108,16 +114,20 @@ public class Mass {
         INDArray cs = CustomOperations.append(Nd4j.create(new int[]{0}, new int[]{1, 1}), ts.cumsum(0));
         INDArray cs2 = CustomOperations.append(Nd4j.create(new int[]{0}, new int[]{1, 1}), pow(ts, 2).cumsum(0));
 
-        INDArray wSum = cs.get(NDArrayIndex.interval(w, cs.length())).sub(cs.get(NDArrayIndex.interval(0, cs.length() - w)));
-        INDArray wSum2 = cs2.get(NDArrayIndex.interval(w, cs2.length())).sub(cs2.get(NDArrayIndex.interval(0, cs2.length() - w)));
+        INDArray wSum =
+                cs.get(NDArrayIndex.interval(w, cs.length())).sub(cs.get(NDArrayIndex.interval(0, cs.length() - w)));
+        INDArray wSum2 =
+                cs2.get(NDArrayIndex.interval(w, cs2.length())).sub(cs2.get(NDArrayIndex.interval(0, cs2.length() - w)));
 
-        return sqrt(wSum2.div(w).sub(pow(wSum.div(w), 2)));
+        INDArray subResult = wSum2.div(w).sub(pow(wSum.div(w),2));
+        BooleanIndexing.replaceWhere(subResult, EPS, Conditions.lessThanOrEqual(EPS));
+        return sqrt(subResult);
     }
 
     /**
      *  wrapper method for JTransform's fast fourier transform.
      *
-     * @param signal
+     * @param signal the series to find fft of.
      * @return Complex array of fft
      */
     private Complex[] fft1D(Complex[] signal) {
@@ -170,5 +180,4 @@ public class Mass {
         }
         return signal;
     }
-
 }
